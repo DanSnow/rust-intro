@@ -16,9 +16,9 @@ fn main() {
 }
 ```
 
-[play](https://play.rust-lang.org/?gist=2e8d72baf064c582fcd1d7563b0ed682&version=stable&mode=debug&edition=2015)
+[![Playground][play-btn]](https://play.rust-lang.org/?gist=2e8d72baf064c582fcd1d7563b0ed682&version=stable&mode=debug&edition=2015)
 
-> 範例的下方如果有個 `play` 的連結，按下去就會連到 Rust Playground ，讓你可以直接執行範例。我並不會每個範例都加上連結，請見諒。
+> 範例的下方若有個 ![Playground](https://i.imgur.com/7F0C6a1.png) 的連結，按下去就會連到 Rust Playground ，讓你可以直接執行範例。
 
 > 補充一個之前忘了提的東西， `!` 在這邊並不是打錯了， `println!` 是一起的
 
@@ -56,7 +56,7 @@ let b = a.clone();
 println!("{}", a);
 ```
 
-[play](https://play.rust-lang.org/?gist=bbd5cea5645d6f17a52376a1105d2ef6&version=stable&mode=debug&edition=2015)
+[![Playground][play-btn]](https://play.rust-lang.org/?gist=bbd5cea5645d6f17a52376a1105d2ef6&version=stable&mode=debug&edition=2015)
 
 > 數字的大小則是固定的，於是在發生把變數送出去的情況時， Rust 會使用複製一份的方式給別人，所以就變成了兩個人都擁有，不會發生錯誤的情況。
 >> 如果你想知道哪個型態可以被複製，可以參考文件的 [`std::marker::Copy`](https://doc.rust-lang.org/stable/std/marker/trait.Copy.html) ，你會在底下看到如 `impl Copy for i32` 這就代表 `i32` 可以被複製
@@ -81,7 +81,7 @@ fn main() {
 }
 ```
 
-[play](https://play.rust-lang.org/?gist=0ef153bf8dae80d3d812b57dd934e6c9&version=stable&mode=debug&edition=2015)
+[![Playground][play-btn]](https://play.rust-lang.org/?gist=0ef153bf8dae80d3d812b57dd934e6c9&version=stable&mode=debug&edition=2015)
 
 Borrow
 ------
@@ -101,7 +101,7 @@ fn main() {
 }
 ```
 
-[play](https://play.rust-lang.org/?gist=a1740013bff718d8141cec6cba465392&version=stable&mode=debug&edition=2015)
+[![Playground][play-btn]](https://play.rust-lang.org/?gist=a1740013bff718d8141cec6cba465392&version=stable&mode=debug&edition=2015)
 
 ```rust
 // 這邊沒有加上 & 代表我想要整個拿走
@@ -135,7 +135,7 @@ fn main() {
 }
 ```
 
-[play](https://play.rust-lang.org/?gist=845ebd1e9abf0c3cdf0def4f5dbcad1e&version=stable&mode=debug&edition=2015)
+[![Playground][play-btn]](https://play.rust-lang.org/?gist=845ebd1e9abf0c3cdf0def4f5dbcad1e&version=stable&mode=debug&edition=2015)
 
 > 還記得前一篇的猜數字裡有 `stdin().read_line(&mut input)` 嗎？  
 
@@ -248,3 +248,5 @@ let part_of_string: &str = string[1..3];
 下一篇要來介紹一下 borrow 的存活時間 (lifetime) 同樣也是重要觀念，這兩篇都是在講觀念可能比較無聊，不過接下來我們就會繼續介紹程式的語法了。
 
 (希望你也跟我一樣喜歡寫 code)
+
+[play-btn]: https://i.imgur.com/7F0C6a1.png
