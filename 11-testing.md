@@ -68,7 +68,7 @@ test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out
 
 ```rust
 #[test]
-#[should_panic]
+#[should_panic] // 標記測試應該要失敗
 fn test_this_should_fail() {
   assert_eq!(add(2, 2), 5);
 }
@@ -100,12 +100,20 @@ Rust 中一共提供了三種斷言：
 
 - `assert!`: 最基本款的，測試裡面的條件為真，如果裡面的條件為假 (`false`) 則引發 panic
 
+```rust
+assert!(false);
+```
+
 ```plain
 thread 'tests::demo' panicked at 'assertion failed: false', src/lib.rs:27:9
 ```
 
 - `assert_eq!`: 測試兩個參數是相等的，這個上面已經用過了
 - `assert_ne!`: 測試兩個參數是不相等的
+
+```rust
+assert_ne!(1, 1);
+```
 
 ```plain
 thread 'tests::demo' panicked at 'assertion failed: `(left != right)`
@@ -125,6 +133,6 @@ thread 'tests::demo' panicked at '是 false', src/lib.rs:27:9
 
 後面也可以放格式化字串跟參數。
 
-有能可能會擔心這些斷言會不會影響程式的效能，所以上面的斷言也都提供了除錯的版本，分別為： `debug_assert!` 、 `debug_assert_eq!` 、 `debug_assert_ne!` ，它們只在除錯模式時有作用， release 時是沒作用的，除錯模式就是平常使用 `cargo build` 產生的版本，那 release 版本的怎麼產生呢？使用 `cargo build --release` 就好了，這會花比較長的時間編譯，此外 `cargo run` 也可以使用 `cargo run --release` 執行 release 版本的程式。
+有人可能會擔心這些斷言會不會影響程式的效能，所以上面的斷言也都提供了除錯的版本，分別為： `debug_assert!` 、 `debug_assert_eq!` 、 `debug_assert_ne!` ，它們只在除錯模式時有作用， release 時是沒作用的，除錯模式就是平常使用 `cargo build` 產生的版本，那 release 版本的怎麼產生呢？使用 `cargo build --release` 就好了，這會花比較長的時間編譯，此外 `cargo run` 也可以使用 `cargo run --release` 執行 release 版本的程式。
 
 下一篇我們要來介紹 Rust 中的函數式程式設計，以及 Rust 中的閉包 (Closure) 。
