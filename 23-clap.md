@@ -1,7 +1,7 @@
 Clap
 =====
 
-本次的程式碼在 https://github.com/DanSnow/tree/master/hastebin-client
+本次的程式碼在 https://github.com/DanSnow/rust-intro/tree/master/hastebin-client
 
 這次來寫個在指令列下使用的小工具吧，各位知道 [hastebin](https://hastebin.com/about.md) 嗎？是個開源，而且很陽春的 pastebin ，今天的目標是來寫個它的用戶端，首先先建立專案並安裝幾個相依套件吧：
 

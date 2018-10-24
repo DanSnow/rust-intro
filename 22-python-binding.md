@@ -5,7 +5,7 @@ Python 是個廣泛使用的腳本語言，想必或多或少都有聽過這個�
 
 在這方便的程式語言中若偶爾碰到了需要對底層的東西做操作又找不到相關的函式庫時，就只好自己來寫綁定啦，或是有某部份需要加速等等的， Rust 的社群提供了一個很棒的 Python 綁定： [PyO3](https://github.com/PyO3/pyo3)
 
-本次的程式碼在 https://github.com/DanSnow/tree/master/python-binding
+本次的程式碼在 https://github.com/DanSnow/rust-intro/tree/master/python-binding
 
 PyO3 需要使用到 nightly 版本的 Rust ，因為它目前使用到了一個還未穩定的功能 `specialization` ，中文翻譯叫「特化」，它可以讓你為特定的型態提供不同的 trait 的實作，實際上標準函式庫中也有因為效能原因而為 `&str` 提供特化的 `to_string` 實作。
 
