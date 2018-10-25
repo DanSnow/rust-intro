@@ -9,6 +9,7 @@ use atty::Stream;
 use clap::{App, Arg};
 use reqwest::{Body, Client, Url};
 use std::{
+    borrow::Cow,
     env,
     fs::{self, File},
     io::{stdin, Read},
@@ -66,9 +67,9 @@ fn main() -> reqwest::Result<()> {
     let base = Url::parse(
         &matches
             .value_of("HOST")
-            .map(ToOwned::to_owned)
-            .or(env::var("HASTE_SERVER").ok())
-            .unwrap_or_else(|| URL.to_owned()),
+            .map(Cow::from)
+            .or(env::var("HASTE_SERVER").ok().map(Cow::from))
+            .unwrap_or(Cow::from(URL)),
     )
     .unwrap();
     let client = Client::new();
