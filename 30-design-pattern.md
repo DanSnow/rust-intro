@@ -32,6 +32,8 @@ impl BetterFileExt for File {
 }
 ```
 
+另外這也可以用在幫不同的型態提供一個統一的介面，之前也在介紹 macro 時提到過，你可以定義一個 trait 然後幫你需要的型態實作你定義的 trait 。
+
 Deref
 -----
 
