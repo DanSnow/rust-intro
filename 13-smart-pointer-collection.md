@@ -25,9 +25,9 @@ map.insert(String::from("key2"), 2);
 
 ```rust
 let map = vec![
-  vec![String::from("key1"), 1],
-  vec![String::from("key2"), 2]
-].into_iter().collect::<HashMap<_, _>>()
+  (String::from("key1"), 1),
+  (String::from("key2"), 2),
+].into_iter().collect::<HashMap<_, _>>();
 ```
 
 另外還有 [maplit](https://github.com/bluss/maplit) 這個 crate 可以使用：
@@ -62,7 +62,7 @@ map.insert(String::from("key1"), 3);
 或是使用 entry 這個 API ：
 
 ```rust
-map.entry("key1").and_modify(|v| { *v = 3 });
+map.entry("key1".to_owned()).and_modify(|v| { *v = 3 });
 ```
 
 HashSet

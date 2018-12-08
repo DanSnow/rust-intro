@@ -3,6 +3,8 @@ Channel & Crossbeam
 
 今天要來介紹 Atomic 與 Channel ，另外還會介紹 crossbeam 這個 crate 。
 
+> 這篇的範例也都請在自己的電腦上測試。
+
 Atomic
 ------
 
@@ -85,6 +87,8 @@ crossbeam
 
 crossbeam 實際上不只是一個 crate ，其底下還分成 `crossbeam-epoch` 、 `crossbeam-deque` 、 `crossbeam-channel` 、 `crossbeam-utils` ，這次主要要介紹的東西在 `crossbeam-channel` 與 `crossbeam-utils` ，不過為了方便，我們還是使用 `crossbeam` 這個 crate 吧。
 
+> 以下的程式使用的是 crossbeam `0.5`
+
 crossbeam channel
 -----------------
 
@@ -105,18 +109,18 @@ fn main() {
   for i in  0..4 {
     let rx = rx.clone();
     children.push(thread::spawn(move || loop {
-      // 這邊跟標準函式庫的不同， recv 回傳的是 Option
       match rx.recv() {
-        Some(val) => {
+        Ok(val) => {
           println!("Thread[{}]: 收到 {:?}", i, val);
         }
-        None => break,
+        Err(_) => break,
       }
     }));
   }
-  for line in stdin().lock().lines() {
+  let stdin = stdin();
+  for line in stdin.lock().lines() {
     let line = line.unwrap();
-    tx.send(line);
+    tx.send(line).unwrap();
   }
   drop(tx);
   for handle in children {
@@ -146,24 +150,24 @@ fn main() {
     for i in  0..4 {
       let rx = rx.clone();
       // 改呼叫 scope 上的 spawn
-      scope.spawn(move || loop {
+      scope.spawn(move |_| loop {
         match rx.recv() {
-          Some(val) => {
+          Ok(val) => {
             println!("Thread[{}]: 收到 {:?}", i, val);
           }
-          None => break,
+          Err(_) => break,
         }
       });
     }
     // 要把外面的讀 stdin 移進來，不然不會被執行到而導致程式卡住
     for line in stdin().lock().lines() {
       let line = line.unwrap();
-      tx.send(line);
+      tx.send(line).unwrap();
     }
     drop(tx);
     // 所有的 thread 會在離開 scope 時 join
     // 所以 lifetime 只需要在這個範圍有效就行了
-  });
+  }).unwrap();
 }
 ```
 
