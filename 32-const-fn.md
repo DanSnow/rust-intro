@@ -66,7 +66,7 @@ fn main() {
 }
 ```
 
-這兩種作法實際上早就被用在標準函式庫中了，比如在 [`std::sync::atomic::AtomicUsize`](https://doc.rust-lang.org/stable/std/sync/atomic/struct.AtomicUsize.html) ，原本設計是使用 [`std::sync::atomic::ATOMIC_USIZE_INIT`](https://doc.rust-lang.org/stable/std/sync/atomic/constant.ATOMIC_USIZE_INIT.html) 來初始化的，不過也在 `AtomicUsize::new` 也是 const fn 了，所以可以直接在全域使用。
+這兩種作法實際上早就被用在標準函式庫中了，比如在 [`std::sync::atomic::AtomicUsize`](https://doc.rust-lang.org/stable/std/sync/atomic/struct.AtomicUsize.html) ，原本設計是使用 [`std::sync::atomic::ATOMIC_USIZE_INIT`](https://doc.rust-lang.org/stable/std/sync/atomic/constant.ATOMIC_USIZE_INIT.html) 來初始化的，不過現在 `AtomicUsize::new` 也是 const fn 了，所以可以直接在全域使用。
 
 > 實際上早在更早之前的版本 `AtomicUsize::new` 就已經是 const fn 了，標準函式庫實際上可以使用那些還沒穩定的功能的
 
