@@ -5,20 +5,24 @@ module.exports = {
   entry: './index.js',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
       {
         test: /\.html$/,
-        loader: 'html-loader'
-      }
-    ]
+        loader: 'html-loader',
+      },
+    ],
   },
   plugins: [
     new HtmlPlugin({
-      template: 'index.html'
-    })
+      template: 'index.html',
+    }),
   ],
-  mode: 'development'
+  mode: 'development',
+  devtool: 'cheap-module-source-map',
+  experiments: {
+    asyncWebAssembly: true,
+  },
 }

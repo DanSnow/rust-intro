@@ -112,7 +112,7 @@ fn handle_submit(event: web_sys::Event) {
     let cb = Closure::wrap(Box::new(|_| {
         let window = web_sys::window().unwrap();
         fetch_posts(&window);
-    }) as Box<FnMut(_)>);
+    }) as Box<dyn FnMut(_)>);
     window.fetch_with_request(&req).then(&cb);
     cb.forget();
 }
@@ -125,7 +125,7 @@ pub fn main() -> Result<(), JsValue> {
     let create_post = document.query_selector("#create-post")?.unwrap();
     web_sys::console::log_1(create_post.as_ref());
 
-    let handler = Closure::wrap(Box::new(handle_submit) as Box<Fn(_)>);
+    let handler = Closure::wrap(Box::new(handle_submit) as Box<dyn Fn(_)>);
     AsRef::<web_sys::EventTarget>::as_ref(&create_post)
         .add_event_listener_with_callback("submit", handler.as_ref().unchecked_ref())?;
     handler.forget();
