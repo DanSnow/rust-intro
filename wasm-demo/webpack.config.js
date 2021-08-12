@@ -5,12 +5,16 @@ module.exports = {
   entry: './index.js',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   plugins: [
     new HtmlPlugin({
-      title: 'wasm demo'
-    })
+      title: 'wasm demo',
+    }),
   ],
-  mode: 'development'
+  mode: 'development',
+  devtool: 'cheap-module-source-map',
+  experiments: {
+    asyncWebAssembly: true,
+  },
 }
